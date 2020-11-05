@@ -1,0 +1,42 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.apache.myfaces.tomahawk</groupId>
+    <artifactId>tomahawk-project</artifactId>
+    <version>1.1.13-SNAPSHOT</version>
+  </parent>
+
+  <groupId>org.apache.myfaces.tomahawk</groupId>
+  <artifactId>tomahawk-site</artifactId>
+  <packaging>pom</packaging>
+  <name>Tomahawk Core</name>
+  <description>
+    JSF components and utilities that can be used with any JSF implementation.
+    This library is compatible with both JSF1.1 and JSF1.2; however for JSF1.2 users there
+    is an alternative build of Tomahawk available that takes advantage of JSF1.2 features to
+    offer some additional benefits.
+  </description>
+  <url>http://myfaces.apache.org/tomahawk</url>
+
+  <distributionManagement>
+    <site>
+      <id>apache-site</id>
+      <url>scpexe://people.apache.org/www/myfaces.apache.org/tomahawk</url>
+    </site>
+  </distributionManagement>
+
+  <reporting>
+    <plugins>
+      <plugin>
+        <artifactId>maven-project-info-reports-plugin</artifactId>
+        <configuration>
+          <checkoutDirectoryName>tomahawk</checkoutDirectoryName>
+          <anonymousConnection>scm:svn:http://svn.apache.org/repos/asf/myfaces/tomahawk/trunk</anonymousConnection>
+          <developerConnection>scm:svn:https://svn.apache.org/repos/asf/myfaces/tomahawk/trunk</developerConnection>
+          <webAccessUrl>http://svn.apache.org/viewcvs.cgi/myfaces/tomahawk/trunk</webAccessUrl>
+        </configuration>
+      </plugin>
+    </plugins>
+  </reporting>
+</project>

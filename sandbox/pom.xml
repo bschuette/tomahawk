@@ -1,0 +1,129 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.apache.myfaces.tomahawk</groupId>
+  <artifactId>sandbox-project</artifactId>
+  <packaging>pom</packaging>
+  <name>Sandbox Project</name>
+  <description>
+    This is the MyFaces Sandbox Subproject Description [INSERT MORE STUFF HERE]
+  </description>
+  <url>http://myfaces.apache.org/sandbox-project</url>
+
+  <parent>
+    <groupId>org.apache.myfaces.tomahawk</groupId>
+    <artifactId>tomahawk-project</artifactId>
+    <version>1.1.15-SNAPSHOT</version>	  
+  </parent>
+  <scm>
+    <connection>scm:svn:http://svn.apache.org/repos/asf/myfaces/tomahawk/trunk/sandbox</connection>
+    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/myfaces/tomahawk/trunk/sandbox</developerConnection>
+    <url>http://svn.apache.org/viewcvs.cgi/myfaces/tomahawk/trunk/sandbox</url>
+  </scm>
+  <profiles>
+    <!-- This profile is invoked by -DprepareRelease=true.
+         This allows mvn release:prepare to
+         run successfully on the assembly projects.
+         But note than sandbox is never released. -->
+    <!--
+    <profile>
+      <id>prepare-release</id>
+      <activation>
+        <property>
+          <name>prepareRelease</name>
+        </property>
+      </activation>
+      <modules>
+        <module>assembly</module>
+      </modules>
+    </profile>
+    -->
+    <profile>
+      <id>generate-site</id>
+      <modules>
+        <module>site</module>
+      </modules>
+    </profile>
+  </profiles>
+
+  <modules>
+    <module>core</module>
+    <module>core12</module>
+    <module>core20</module>
+    <module>examples</module>
+    <module>examples20</module>
+  </modules>
+  
+  <dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring</artifactId>
+            <version>2.0.1</version>
+            <scope>compile</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>2.5.1-final-20040804</version>
+            <scope>compile</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>2.3.10</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+           <groupId>com.lowagie</groupId>
+           <artifactId>itext</artifactId>
+           <version>1.4.8</version>
+        </dependency>
+
+    </dependencies>
+  </dependencyManagement>
+
+  <build>
+        <plugins>	     
+            <plugin>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-source</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>    
+        </plugins>
+    </build>	
+
+  <distributionManagement>
+    <site>
+      <id>apache-site</id>
+      <name>Apache Website</name>
+      <url>scpexe://people.apache.org/www/myfaces.apache.org/sandbox-project/</url>
+    </site>
+  </distributionManagement>
+
+
+<!--
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <version>2.2</version>
+        <configuration>
+          <configLocation>default/myfaces-checks-standard.xml</configLocation>
+          <headerLocation>default/myfaces-header.txt</headerLocation>
+        </configuration>
+      </plugin>
+    </plugins>
+  </reporting>  
+-->
+
+</project>

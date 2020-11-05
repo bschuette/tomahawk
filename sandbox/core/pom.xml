@@ -1,0 +1,444 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>tomahawk-sandbox</artifactId>
+    <packaging>jar</packaging>
+    <name>Sandbox Core</name>
+    <description>
+        The Tomahawk Sandbox is a collection of experimental code that might some day be promoted into
+        the Tomahawk library (or possibly some other Myfaces project). The code here is freely available
+        under the normal ASF license. However there is no guarantee of API stability or continued maintenance
+        for any code that is in the sandbox.
+    </description>
+
+    <parent>
+        <groupId>org.apache.myfaces.tomahawk</groupId>
+        <artifactId>sandbox-project</artifactId>
+        <version>1.1.15-SNAPSHOT</version>
+    </parent>
+  
+    <scm>
+        <connection>scm:svn:http://svn.apache.org/repos/asf/myfaces/tomahawk/trunk/sandbox/core</connection>
+        <developerConnection>scm:svn:https://svn.apache.org/repos/asf/myfaces/tomahawk/trunk/sandbox/core</developerConnection>
+        <url>http://svn.apache.org/viewcvs.cgi/myfaces/tomahawk/trunk/sandbox/core</url>
+    </scm>
+
+    <dependencies>
+  
+        <!-- compile -->
+
+        <dependency>
+            <groupId>org.apache.myfaces.tomahawk</groupId>
+            <artifactId>tomahawk</artifactId>
+            <version>${project.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring</artifactId>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-validator</groupId>
+            <artifactId>commons-validator</artifactId>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-collections</groupId>
+            <artifactId>commons-collections</artifactId>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-el</groupId>
+            <artifactId>commons-el</artifactId>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>portlet-api</groupId>
+            <artifactId>portlet-api</artifactId>
+            <version>1.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>poi</groupId>
+            <artifactId>poi</artifactId>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- provided dependencies -->
+
+        <dependency>
+            <groupId>org.apache.myfaces.core</groupId>
+            <artifactId>myfaces-api</artifactId>
+            <version>${myfaces-core11-version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jsp-api</artifactId>
+            <version>2.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.3</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+          <!-- Needed for JSF1.2 compatibility hacks -->
+          <groupId>javax.el</groupId>
+          <artifactId>el-api</artifactId>
+          <version>1.0</version>
+          <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+           <groupId>com.sun.facelets</groupId>
+           <artifactId>jsf-facelets</artifactId>
+           <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+           <groupId>com.lowagie</groupId>
+           <artifactId>itext</artifactId>
+        </dependency>
+
+        <!-- test dependencies -->
+
+        <dependency>
+            <groupId>org.apache.myfaces.core</groupId>
+            <artifactId>myfaces-impl</artifactId>
+            <version>${myfaces-core11-version}</version>
+            <scope>test</scope>
+        </dependency>
+        
+        <dependency>
+          <groupId>maven-taglib</groupId>
+          <artifactId>maven-taglib-plugin</artifactId>
+          <scope>test</scope>
+        </dependency>        
+        
+        <dependency>
+            <groupId>org.apache.shale</groupId>
+            <artifactId>shale-test</artifactId>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.myfaces</groupId>
+                    <artifactId>myfaces-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.myfaces</groupId>
+                    <artifactId>myfaces-impl</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>myfaces</groupId>
+                    <artifactId>myfaces-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>myfaces</groupId>
+                    <artifactId>myfaces-impl</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <excludes>
+                   <exclude>**/*.vm</exclude>
+                </excludes>
+            </resource>
+            <!-- 
+            <resource>
+                <directory>src/main/resources-facesconfig</directory>
+            </resource>
+             -->
+        </resources>
+        <plugins>
+            <plugin>
+              <groupId>org.apache.myfaces.buildtools</groupId>
+              <artifactId>myfaces-builder-plugin</artifactId>
+              <version>${myfaces-builder-plugin-version}</version>
+              <executions>
+                <execution>
+                  <!-- A hierarchy of different tag classes must be created, 
+                  because this classes are not part of the public api. The
+                  generation of all html package is the same. Please note that
+                  we need only a subset -->
+                  <configuration>
+                      <replacePackagePrefixTagFrom>org.apache.myfaces.taglib</replacePackagePrefixTagFrom>
+                      <replacePackagePrefixTagTo>org.apache.myfaces.shared_tomahawk.taglib</replacePackagePrefixTagTo>
+                  </configuration>
+                  <goals>
+                    <goal>build-metadata</goal>
+                  </goals>
+                </execution>
+                <execution>
+                  <id>makefacesconfig</id>
+                  <configuration>
+                      <xmlFile>META-INF/faces-config.xml</xmlFile>
+                  </configuration>
+                  <goals>
+                      <goal>make-config</goal>
+                  </goals>
+                </execution>
+                <execution>
+                  <id>makecomp</id>
+                  <goals>
+                    <goal>make-components</goal>
+                  </goals>
+                </execution>
+                <execution>
+                  <id>makeval</id>
+                  <goals>
+                    <goal>make-validators</goal>
+                  </goals>
+                </execution>
+                <execution>
+                  <id>maketags</id>
+                  <goals>
+                      <goal>make-tags</goal>
+                  </goals>
+                </execution>
+                <execution>
+                  <id>make_validator_tags_tomahawk</id>
+                  <goals>
+                      <goal>make-validator-tags</goal>
+                      <goal>make-converter-tags</goal>
+                  </goals>
+                </execution>                
+                <execution>
+                  <id>makesandboxtld</id>
+                  <configuration>
+                      <xmlFile>META-INF/myfaces_sandbox.tld</xmlFile>
+                      <xmlBaseFile>src/main/conf/META-INF/myfaces_sandbox-base.tld</xmlBaseFile>
+                      <templateFile>tomahawk.vm</templateFile>
+                      <params>
+                         <shortname>s</shortname>
+                         <uri>http://myfaces.apache.org/sandbox</uri>
+                         <displayname>Tomahawk sandbox tag library.</displayname>
+                         <description>Enhanced standard JSP actions and custom MyFaces actions.</description>
+                      </params>
+                      <modelIds>
+                          <modelId>tomahawk-sandbox</modelId>
+                      </modelIds>
+                  </configuration>
+                  <goals>
+                      <goal>make-config</goal>
+                  </goals>
+                </execution>
+                <execution>
+                  <id>makesandboxtaglib</id>
+                  <configuration>
+                      <xmlFile>META-INF/sandbox.taglib.xml</xmlFile>
+                      <xmlBaseFile>src/main/conf/META-INF/facelets-taglib-base.xml</xmlBaseFile>
+                      <templateFile>facelets-taglib.vm</templateFile>
+                      <params>
+                         <shortname>s</shortname>
+                         <uri>http://myfaces.apache.org/sandbox</uri>
+                      </params>
+                      <modelIds>
+                          <modelId>tomahawk-sandbox</modelId>
+                      </modelIds>
+                  </configuration>
+                  <goals>
+                      <goal>make-config</goal>
+                  </goals>
+                </execution>
+              </executions>
+            </plugin>
+            <plugin>
+              <artifactId>maven-surefire-plugin</artifactId>
+              <version>2.4.2</version>
+              <configuration>
+                  <excludes>
+                      <exclude>**/Abstract*.java</exclude>
+                      <exclude>**/TestUtils.java</exclude>
+                  </excludes>
+              </configuration>
+            </plugin>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-compiler-plugin</artifactId>
+              <configuration>
+                <source>1.4</source>
+                <target>1.4</target>
+              </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <reporting>
+        <plugins>
+
+            <plugin>
+                <artifactId>maven-changelog-plugin</artifactId>
+                <version>2.1</version>
+                <reportSets>
+                    <reportSet>
+                        <id>dual-report</id>
+                        <configuration>
+                            <type>range</type>
+                            <range>30</range>
+                        </configuration>
+                        <reports>
+                            <report>changelog</report>
+                            <report>file-activity</report>
+                            <report>dev-activity</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.4</version>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-jxr-plugin</artifactId>
+                <version>2.1</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>taglist-maven-plugin</artifactId>
+                <version>2.0</version>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>2.4</version>
+            </plugin>
+
+        </plugins>
+    </reporting>
+
+    <profiles>
+        <profile>
+            <id>generate-site</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <!-- Generate report content -->
+                        <groupId>org.apache.myfaces.buildtools</groupId>
+                        <artifactId>myfaces-builder-plugin</artifactId>
+                        <version>${myfaces-builder-plugin-version}</version>
+                        <configuration>
+                            <taglibs>
+                                <s>http://myfaces.apache.org/sandbox</s>
+                            </taglibs>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                  <goal>tagdoc-content</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+            <reporting>
+                <plugins>
+                    <plugin>
+                        <groupId>net.sourceforge.maven-taglib</groupId>
+                        <artifactId>maven-taglib-plugin</artifactId>
+                        <configuration>
+                            <taglib.src.dir>${basedir}/target/classes/META-INF</taglib.src.dir>
+                            <tldDocDir>${basedir}/target/site/tlddoc</tldDocDir>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <!-- Generate report index -->
+                        <groupId>org.apache.myfaces.buildtools</groupId>
+                        <artifactId>myfaces-builder-plugin</artifactId>
+                        <version>${myfaces-builder-plugin-version}</version>
+                        <configuration>
+                            <taglibs>
+                                <s>http://myfaces.apache.org/sandbox</s>
+                            </taglibs>
+                        </configuration>
+                    </plugin>                    
+                </plugins>
+            </reporting>
+        </profile>
+        <profile>
+            <id>generate-assembly</id>
+            <activation>
+              <property>
+                <name>performRelease</name>
+                <value>true</value>
+              </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>2.4</version>
+                        <executions>
+                            <execution>
+                                <id>attach-javadoc</id>
+                                <goals><goal>jar</goal></goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>net.sourceforge.maven-taglib</groupId>
+                        <artifactId>maven-taglib-plugin</artifactId>
+                        <configuration>
+                            <taglib.src.dir>${basedir}/target/classes/META-INF</taglib.src.dir>
+                            <tldDocDir>${basedir}/target/tlddoc</tldDocDir>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>attach-javadoc</id>
+                                <goals><goal>taglibdocjar</goal></goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+</project>
